@@ -4,6 +4,10 @@ class MqttClient {
     constructor() {
         this.checkEnvironmentVariables();
         console.log(`[MqttClient] Connecting to MQTT.. ${process.env.MQTT_ADDRESS}`);
+        this.client = mqtt.connect(process.env.MQTT_ADDRESS);
+        this.client.on('connect', this.onMqttConnect);
+        this.client.on('message', this.onMqttMessageReceived);
+        this.onMessageReceivedCallbacks = [];
     }
 
     onMqttConnect = () => {
@@ -12,7 +16,9 @@ class MqttClient {
 
     onMqttMessageReceived = (topic, message) => {
         console.log(`[MqttClient] Received data from topic '${topic}' with value '${message}'`);
-        
+        this.onMessageReceivedCallbacks.forEach(callback => {
+            if (callback) callback(`${topic}`, `${message}`);
+        });
     }
 
     onClientSubscribe = (err) => {
@@ -21,7 +27,7 @@ class MqttClient {
     }
 
     checkEnvironmentVariables = () => {
-
+        if (!process.env.MQTT_ADDRESS) throw new Error("Missing environment variable 'MQTT_ADDRESS'");
     }
 }
 
