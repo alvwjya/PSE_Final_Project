@@ -1,0 +1,17 @@
+[
+    {
+        "roomName" : "Bedroom",
+        "roomDesc" : "Christy's bedroom"
+    },
+
+    {
+        "roomName" : "Living Room",
+        "roomDesc" : "Living room nih"
+    },
+
+    {
+        "roomName" : "Kitchen",
+        "roomDesc" : "tempat memasak"
+    }
+
+]

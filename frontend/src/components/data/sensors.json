@@ -1,0 +1,28 @@
+{
+    "sensors" : [
+    {
+        "sensorName" : "AC 1",
+        "sensorDesc" : "ini AC di kamar christy",
+        "type" : "AC"
+    },
+
+    {
+        "sensorName" : "Lampu 1",
+        "sensorDesc" : "ini Lampu di meja belajar",
+        "type" : "Lamp"
+    },
+
+    {
+        "sensorName" : "AC 2",
+        "sensorDesc" : "ini AC 2 di kamar christy",
+        "type" : "AC"
+    },
+
+    {
+        "sensorName" : "Lampu 2",
+        "sensorDesc" : "ini Lampu deket kamar mandi",
+        "type" : "Lamp"
+    }
+
+]
+}
