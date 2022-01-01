@@ -92,7 +92,6 @@ void loop()
 
 void callback(char *topic, byte *payload, unsigned int length)
 {
-
     //convert topic to string to make it easier to work with
     String topicStr = topic;
 
@@ -103,7 +102,6 @@ void callback(char *topic, byte *payload, unsigned int length)
 
     if (strcmp(topic, acPower) == 0)
     {
-
         //turn the light on if the payload is '1' and publish to the MQTT server a confirmation message
         if (payload[0] == '1')
         {
@@ -139,7 +137,6 @@ void callback(char *topic, byte *payload, unsigned int length)
 //generate unique name from MAC addr
 String macToStr(const uint8_t *mac)
 {
-
     String result;
 
     for (int i = 0; i < 6; ++i)
