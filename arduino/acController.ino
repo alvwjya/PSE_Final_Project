@@ -208,3 +208,42 @@ void reconnect()
         }
     }
 }
+
+void turnOn(){
+  ac.on();
+  ac.setTemp(20);
+  ac.setFan(1);
+  ac.setMode(kDaikinCool);
+  ac.setSwingVertical(false);
+  ac.setPowerful(false);
+  ac.disableOnTimer();
+  ac.disableOffTimer();
+
+  #if SEND_DAIKIN
+    ac.send();
+  #endif
+}
+
+void turnOff(){
+  ac.off();
+
+  #if SEND_DAIKIN
+    ac.send();
+  #endif
+}
+
+void changeTemp(int temp) {
+  ac.setTemp(temp);
+
+  #if SEND_DAIKIN
+    ac.send();
+  #endif
+}
+
+void changeFan(int fan) {
+  ac.setFan(fan);
+
+  #if SEND_DAIKIN
+    ac.send();
+  #endif
+}
