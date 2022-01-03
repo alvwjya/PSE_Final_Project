@@ -12,6 +12,19 @@ class MqttClient {
 
     onMqttConnect = () => {
         console.log(`[MqttClient] Connected to ${process.env.MQTT_ADDRESS}`);
+
+        //Subscribe topics
+        console.log(`[MqttClient] Subscribing to topic ${process.env.roomTemp}`);
+        this.client.subscribe(process.env.roomTemp, err => this.onClientSubscribe(err));
+
+        console.log(`[MqttClient] Subscribing to topic ${process.env.roomHumid}`);
+        this.client.subscribe(process.env.roomHumid, err => this.onClientSubscribe(err));
+
+        console.log(`[MqttClient] Subscribing to topic ${process.env.roomBrightness}`);
+        this.client.subscribe(process.env.roomBrightness, err => this.onClientSubscribe(err));
+
+        console.log(`[MqttClient] Subscribing to topic ${process.env.roomMotion}`);
+        this.client.subscribe(process.env.roomMotion, err => this.onClientSubscribe(err));
     }
 
     onMqttMessageReceived = (topic, message) => {
@@ -28,6 +41,10 @@ class MqttClient {
 
     checkEnvironmentVariables = () => {
         if (!process.env.MQTT_ADDRESS) throw new Error("Missing environment variable 'MQTT_ADDRESS'");
+        if (!process.env.roomTemp) throw new Error("Missing environment variable 'roomTemp'");
+        if (!process.env.roomHumid) throw new Error("Missing environment variable 'roomHumid'");
+        if (!process.env.roomBrightness) throw new Error("Missing environment variable 'roomBrightness'");
+        if (!process.env.roomMotion) throw new Error("Missing environment variable 'roomMotion'");
     }
 }
 
