@@ -5,7 +5,7 @@ const deviceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    id: {
+    deviceId: {
         type: Number,
         required: true
     },
