@@ -3,13 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Navbar';
 import './SensorsGalery.css';
 import {Link} from 'react-router-dom';
-import $ from "jquery";
+
 
 const SensorsGalery = () => {
-    $.getJSON('./sensors.json', function (data) {
-        let sensors = data.sensors;
-        console.log(sensors);
-            });
     return (
         <>
         <Navbar/>
