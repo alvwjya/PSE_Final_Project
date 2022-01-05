@@ -9,9 +9,8 @@ const deviceSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    //Purpose is for "ac" or "lamp"
-    purpose: {
-        type: String,
+    roomId: {
+        type: Number,
         required: true
     }
 });
