@@ -24,9 +24,11 @@ const mqttClient = require('./mqtt');
 
 //Middleware
 app.use(express.json());
+require('./models/devices');
+require('./models/rooms');
 
 //Routes
-
+app.use(require('./routes/device'));
 
 //Port
 app.listen(port, ()=> {
