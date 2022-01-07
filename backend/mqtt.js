@@ -14,11 +14,11 @@ class MqttClient {
         console.log(`[MqttClient] Connected to ${process.env.MQTT_ADDRESS}`);
 
         //Subscribe topics
-        console.log(`[MqttClient] Subscribing to topic ${process.env.roomTemp}`);
-        this.client.subscribe(process.env.roomTemp, err => this.onClientSubscribe(err));
+        console.log(`[MqttClient] Subscribing to topic ${'alvianRoomTemperature'}`);
+        this.client.subscribe('alvianRoomTemperature', err => this.onClientSubscribe(err));
 
-        console.log(`[MqttClient] Subscribing to topic ${process.env.roomHumid}`);
-        this.client.subscribe(process.env.roomHumid, err => this.onClientSubscribe(err));
+        console.log(`[MqttClient] Subscribing to topic ${'alvianRoomHumidity'}`);
+        this.client.subscribe('alvianRoomHumidity', err => this.onClientSubscribe(err));
 
         console.log(`[MqttClient] Subscribing to topic ${process.env.roomBrightness}`);
         this.client.subscribe(process.env.roomBrightness, err => this.onClientSubscribe(err));

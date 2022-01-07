@@ -9,8 +9,8 @@ const deviceSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    roomId: {
-        type: Number,
+    topic: {
+        type: Object,
         required: true
     }
 });
