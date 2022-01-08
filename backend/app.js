@@ -20,9 +20,10 @@ mongoose.connection.on('error', (err)=> {
     console.log('Connection error', err);
 });
 
-const mqttClient = require('./mqtt');
+//const mqttClient = require('./mqtt');
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 require('./models/devices');
 require('./models/rooms');

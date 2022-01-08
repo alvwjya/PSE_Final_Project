@@ -48,4 +48,4 @@ class MqttClient {
     }
 }
 
-module.exports = new MqttClient();
+//module.exports = new MqttClient();
