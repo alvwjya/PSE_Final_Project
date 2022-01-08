@@ -1,5 +1,4 @@
-{
-    "sensors" : [
+[
     {
         "sensorName" : "AC 1",
         "sensorDesc" : "ini AC di kamar christy",
@@ -25,4 +24,3 @@
     }
 
 ]
-}

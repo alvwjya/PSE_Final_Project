@@ -48,7 +48,6 @@ const AddSensors = () => {
                                                 <label className="form-check-label" for="inputRadioLamp">Lamp</label>
                                             </div>
                                         </div>
-                                        <h2>{displayType}</h2>
                                     </div>
 
                                     <div className="form-group row">
@@ -64,11 +63,9 @@ const AddSensors = () => {
                                         <label for="staticTopics" className="col-sm-2 col-form-label">
                                             Topics:
                                         </label>
-                                        <div className='col-sm-10'>
-                                            <input type="text" id="inputTopics" className="form-control" placeholder="Add Topics" />
-                                        </div>
                                     </div>
 
+            
                                     <div className="form-group row">
                                         <label for="staticTopicsRoomTemp" className="col-sm-2 col-form-label">
                                             Room Temperature:
