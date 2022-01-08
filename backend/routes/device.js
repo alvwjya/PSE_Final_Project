@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Devices = mongoose.model('Devices');
+import {getDevices, addDevice} from '../controllers/deviceController';
 
-router.get('/device/:id', (req, res) => {
-    Devices.findOne({}, function(err, result) {
-        if (err) throw err;
-        console.log(result.deviceId);
-    });
-});
+
+
+//Get all devices
+router.get('/', getDevices);
+//Add device
+router.post('/', addDevice);
+
+export default router;
