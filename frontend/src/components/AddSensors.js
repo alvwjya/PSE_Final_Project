@@ -6,7 +6,8 @@ import './AddSensors.css';
 
 
 const AddSensors = () => {
-
+    
+    const [displayType, setType] = useState();
 
     return (
         <>
@@ -38,15 +39,16 @@ const AddSensors = () => {
                                         </label>
                                         <div className="col-sm-10">
                                             <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" value="AC" name="inputGroupType" id="inputRadioAC"></input>
+                                                <input className="form-check-input" type="radio" value="AC" name="inputGroupType" id="inputRadioAC" onChange={(e)=>setType(e.target.value)}></input>
                                                 <label className="form-check-label" for="inputRadioAC">AC</label>
                                             </div>
 
                                             <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" value="Lamp" name="inputGroupType" id="inputRadioLamp"></input>
+                                                <input className="form-check-input" type="radio" value="Lamp" name="inputGroupType" id="inputRadioLamp" onChange={(e)=>setType(e.target.value)}></input>
                                                 <label className="form-check-label" for="inputRadioLamp">Lamp</label>
                                             </div>
                                         </div>
+                                        <h2>{displayType}</h2>
                                     </div>
 
                                     <div className="form-group row">
