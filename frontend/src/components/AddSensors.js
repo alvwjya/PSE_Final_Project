@@ -9,6 +9,41 @@ const AddSensors = () => {
     
     const [displayType, setType] = useState();
 
+    const typeSensors = () => {
+        if (displayType == "AC") {
+            return (
+                <>
+                    <div className="form-group row">
+                        <label for="staticTopicsRoomTemp" className="col-sm-2 col-form-label">
+                            Room Temperature:
+                        </label>
+                        <div className='col-sm-10'>
+                            <input type="text" id="inputTopicsRoomTemp" className="form-control" placeholder="Add Topics for Room Temperature" />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label for="staticTopicsRoomHumid" className="col-sm-2 col-form-label">
+                            Room Humidity:
+                        </label>
+                        <div className='col-sm-10'>
+                            <input type="text" id="inputTopicsRoomHumid" className="form-control" placeholder="Add Topics for Room Humidity" />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label for="staticTopicsACPower" className="col-sm-2 col-form-label">
+                            AC Power:
+                        </label>
+                        <div className='col-sm-10'>
+                            <input type="text" id="inputTopicsACPower" className="form-control" placeholder="Add Topics for AC Power" />
+                        </div>
+                    </div>
+                </>
+            )
+        }
+    }
+
     return (
         <>
             <Navbar />
@@ -66,33 +101,8 @@ const AddSensors = () => {
                                     </div>
 
             
-                                    <div className="form-group row">
-                                        <label for="staticTopicsRoomTemp" className="col-sm-2 col-form-label">
-                                            Room Temperature:
-                                        </label>
-                                        <div className='col-sm-10'>
-                                            <input type="text" id="inputTopicsRoomTemp" className="form-control" placeholder="Add Topics for Room Temperature" />
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group row">
-                                        <label for="staticTopicsRoomHumid" className="col-sm-2 col-form-label">
-                                            Room Humidity:
-                                        </label>
-                                        <div className='col-sm-10'>
-                                            <input type="text" id="inputTopicsRoomHumid" className="form-control" placeholder="Add Topics for Room Humidity" />
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group row">
-                                        <label for="staticTopicsACPower" className="col-sm-2 col-form-label">
-                                            AC Power:
-                                        </label>
-                                        <div className='col-sm-10'>
-                                            <input type="text" id="inputTopicsACPower" className="form-control" placeholder="Add Topics for AC Power" />
-                                        </div>
-                                    </div>
-
+                                   
+                                {typeSensors()}
                                 </form>
 
                                 <div className="d-flex justify-content-center">
