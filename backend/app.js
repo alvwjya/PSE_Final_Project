@@ -29,6 +29,7 @@ require('./models/rooms');
 
 //Routes
 app.use(require('./routes/device'));
+app.use(require('./routes/room'));
 
 //Port
 app.listen(port, ()=> {
