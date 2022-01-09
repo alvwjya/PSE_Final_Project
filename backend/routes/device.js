@@ -24,8 +24,8 @@ const getDevices = async (req, res) => {
 }
 
 //Get all devices
-router.get('/', getDevices);
+router.get('/device', getDevices);
 //Add device
-router.post('/', addDevice);
+router.post('/device', addDevice);
 
 module.exports = router;
