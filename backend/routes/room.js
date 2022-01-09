@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Rooms = mongoose.model('Rooms');
 require('../models/rooms');
 
 const addRoom = async (req, res) => {
@@ -22,7 +23,7 @@ const getRooms = async (req, res) => {
     }
 }
 
-router.get('/', getRooms);
-router.post('/', addRoom);
+router.get('/room', getRooms);
+router.post('/room', addRoom);
 
 module.exports = router;
