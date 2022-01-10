@@ -1,10 +1,10 @@
 const mqtt = require('mqtt');
-//address = "broker.mqtt-dashboard.com"
+const address = "mqtt://broker.mqtt-dashboard.com";
 class MqttClient {
     constructor() {
-        this.checkEnvironmentVariables();
-        console.log(`[MqttClient] Connecting to MQTT.. ${process.env.MQTT_ADDRESS}`);
-        this.client = mqtt.connect(process.env.MQTT_ADDRESS);
+        //this.checkEnvironmentVariables();
+        console.log('[MqttClient] Connecting to MQTT..');
+        this.client = mqtt.connect(address);
         this.client.on('connect', this.onMqttConnect);
         this.client.on('message', this.onMqttMessageReceived);
         this.onMessageReceivedCallbacks = [];
