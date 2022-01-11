@@ -10,8 +10,8 @@ const deviceSchema = new mongoose.Schema({
         required: true
     },
     topic: {
-        type: Object,
-        required: true
+        type: Array,
+        default: ['alvianRoomTemperature', 'alvianAirConPower', 'alvianAirConTemp', 'alvianAirConFan']
     }
 });
 
