@@ -1,24 +1,20 @@
 const mqtt = require('mqtt');
 const address = "mqtt://broker.mqtt-dashboard.com";
-class MqttClient {
-    constructor() {
-        console.log('[MqttClient] Connecting to MQTT..');
-        this.client = mqtt.connect(address);
-        this.client.on('connect', function() {
-            this.client.subscribe('alvianRoomTemperature');
-            console.log('Subscribe room temp successful');
 
-            this.client.subscribe('alvianRoomHumidity');
-            console.log('Subscribe room humidity successful');
-        });
+console.log('[MqttClient] Connecting to MQTT..');
+var client = mqtt.connect(address);
+client.on('connect', function() {
+    client.subscribe('alvianRoomTemperature');
+    console.log('Subscribe room temp successful');
 
-        this.client.on('message', function(topic, message) {
-            console.log(message.toString());
-        });
+    client.subscribe('alvianRoomHumidity');
+    console.log('Subscribe room humidity successful');
+});
 
-        //this.onMessageReceivedCallbacks = [];
-    }
+client.on('message', function(topic, message) {
+    console.log(message.toString());
+});
 
-}
 
-module.exports = new MqttClient();
+
+//module.exports = new MqttClient();
