@@ -11,7 +11,7 @@ class MqttClient {
     }
 
     onMqttConnect = () => {
-        console.log(`[MqttClient] Connected to ${process.env.MQTT_ADDRESS}`);
+        console.log('[MqttClient] Connected successfully');
 
         //Subscribe topics
         console.log(`[MqttClient] Subscribing to topic ${'alvianRoomTemperature'}`);
