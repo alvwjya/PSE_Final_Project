@@ -8,6 +8,7 @@ client.on("connect", function() {
     client.publish('alvianAirConPower', 'Power');
     client.publish('alvianAirConTemp', 'AC temperature is');
     client.publish('alvianAirConFan', 'AC fan level is');
+    client.publish('alvianLampPower', 'Lamp power');
 });
 
 

@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const Devices = mongoose.model('Devices');
 require('../models/devices');
 
+const mqttClient = require('../mqtt/mqtt_client');
+
 const addDevice = async (req, res) => {
     const device = new Devices(req.body);
     try {
@@ -16,8 +18,9 @@ const addDevice = async (req, res) => {
 
 const getDevices = async (req, res) => {
     try {
-        const devices = await Devices.find();
-        res.json(devices);
+        //const devices = await Devices.find();
+        //res.json(devices);
+        res.status(200).json(msg);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
