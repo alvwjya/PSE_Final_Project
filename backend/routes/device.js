@@ -71,50 +71,33 @@ const addDevice = async (req, res) => {
     }
 }
 
-const getRoomTemp = async (req, res) => {
+const getAC = async (req, res) => {
     
     try {
-        res.status(200).json(msgTemp);
+        res.status(200).json({
+            'Room Temp': msgTemp,
+            'Room Humidity': msgHumid
+        });
     } catch (error) {
         res.status(500).json({message: error.message});
     }
 }
 
-const getRoomHumid = async (req, res) => {
+const getLamp = async (req, res) => {
     try {
-        //const devices = await Devices.find();
-        //res.json(devices);
-        res.status(200).json(msgHumid);
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-}
-
-const getRoomBright = async (req, res) => {
-    try {
-        //const devices = await Devices.find();
-        //res.json(devices);
-        res.status(200).json(msgBright);
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-}
-
-const getRoomMotion = async (req, res) => {
-    try {
-        //const devices = await Devices.find();
-        //res.json(devices);
-        res.status(200).json(msgMotion);
+        res.status(200).json({
+            'Room Brightness': msgBright,
+            'Room Motion': msgMotion
+        });
     } catch (error) {
         res.status(500).json({message: error.message});
     }
 }
 
 //Get all devices
-router.get('/roomtemp', getRoomTemp);
-router.get('/roomhumid', getRoomHumid);
-router.get('/roombright', getRoomBright);
-router.get('/roommotion', getRoomMotion);
+router.get('/ac', getAC);
+router.get('/lamp', getLamp);
+
 //Add device
 router.post('/device', addDevice);
 
