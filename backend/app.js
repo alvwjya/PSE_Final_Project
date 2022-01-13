@@ -20,7 +20,7 @@ const app = express();
     //console.log('Connection error', err);
 //});
 
-const mqttClient = require('./mqtt/mqtt_client');
+//const mqttClient = require('./mqtt/mqtt_client');
 const mqttPublish = require('./mqtt/mqtt_publish');
 
 //Middleware

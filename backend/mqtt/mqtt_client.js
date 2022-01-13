@@ -12,30 +12,30 @@ var clientBright = mqtt.connect(address);
 var clientMotion = mqtt.connect(address);
 
 clientTemp.on('connect', function() {
-    client.subscribe('alvianRoomTemperature');
+    clientTemp.subscribe('alvianRoomTemperature');
     console.log('Subscribe room temp successful');
 });
 
 clientHumidity.on('connect', function() {
-    client.subscribe('alvianRoomHumidity');
+    clientHumidity.subscribe('alvianRoomHumidity');
     console.log('Subscribe room humidity successful');
-})
+});
 
 clientBright.on('connect', function() {
-    client.subscribe('alvianRoomBrightness');
+    clientBright.subscribe('alvianRoomBrightness');
     console.log('Subscribe room brightness successful');
 });
 
 clientMotion.on('connect', function() {
-    client.subscribe('alvianRoomMotion');
+    clientMotion.subscribe('alvianRoomMotion');
     console.log('Subscribe room motion successful');
 });
 
 //---Message---
 
 clientTemp.on('message', function(topic, message) {
-    console.log(message.toString());
     msgTemp = message.toString();
+    console.log(msgTemp);
 });
 
 clientHumidity.on('message', function(topic, message) {
