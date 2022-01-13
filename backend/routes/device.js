@@ -61,8 +61,16 @@ clientMotion.on('message', function(topic, message) {
 });
 // ---------- END OF MQTT ------------
 
-const addDevice = async (req, res) => {
-    const device = new Devices(req.body);
+const setAC = async (req, res) => {
+    try {
+        const addedDevice = await device.save();
+        res.status(201).json(addedDevice);
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+}
+
+const setLamp = async (req, res) => {
     try {
         const addedDevice = await device.save();
         res.status(201).json(addedDevice);
