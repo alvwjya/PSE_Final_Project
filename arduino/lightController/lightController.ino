@@ -4,6 +4,7 @@
 
 #define motionSensor D1
 #define lightSensor D2
+#define lightSwitch D3
 
 
 //Updates with values suitable for your network
@@ -33,8 +34,10 @@ void setup() {
   pinMode(BUILTIN_LED, OUTPUT);
   pinMode(motionSensor, INPUT);
   pinMode(lightSensor, INPUT);
+  pinMode(lightSwitch, OUTPUT);
 
   digitalWrite(BUILTIN_LED, HIGH);
+  
 
   //Start the serial line for debugging
   Serial.begin(115200);
@@ -99,6 +102,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     //turn the light on if the payload is '1' and publish to the MQTT server a confirmation message
     if (payload[0] == '1') {
       digitalWrite(BUILTIN_LED, LOW);
+      digitalWrite(lightSwitch, LOW);
       Serial.println("LAMPU HIDUP");
       client.publish(lampPower, "lightOn");
     }
@@ -106,6 +110,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     //turn the light off if the payload is '0' and publish to the MQTT server a confirmation message
     else if (payload[0] == '0') {
       digitalWrite(BUILTIN_LED, HIGH);
+      digitalWrite(lightSwitch, HIGH);
       Serial.println("LAMPU MATI");
       client.publish(lampPower, "lightOff");
     }
