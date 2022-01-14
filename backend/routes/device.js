@@ -17,6 +17,8 @@ var clientTemp = mqtt.connect(address);
 var clientHumidity = mqtt.connect(address);
 var clientBright = mqtt.connect(address);
 var clientMotion = mqtt.connect(address);
+var publishSetAC = mqtt.connect(address);
+var publishSetLamp = mqtt.connect(address);
 
 clientTemp.on('connect', function() {
     clientTemp.subscribe('alvianRoomTemperature');
@@ -63,7 +65,7 @@ clientMotion.on('message', function(topic, message) {
 
 const setAC = async (req, res) => {
     try {
-        const addedDevice = await device.save();
+        publishSetAC()
         res.status(201).json(addedDevice);
     } catch (error) {
         res.status(400).json({message: error.message});
@@ -71,9 +73,10 @@ const setAC = async (req, res) => {
 }
 
 const setLamp = async (req, res) => {
+    var status = req.body;
     try {
-        const addedDevice = await device.save();
-        res.status(201).json(addedDevice);
+        publishSetLamp.publish("alvianLampPower", status);
+        res.status(201).json(status);
     } catch (error) {
         res.status(400).json({message: error.message});
     }
@@ -106,7 +109,7 @@ const getLamp = async (req, res) => {
 router.get('/ac', getAC);
 router.get('/lamp', getLamp);
 
-//Add device
-router.post('/device', addDevice);
+//Set device
+router.post('/setlamp', setLamp);
 
 module.exports = router;
