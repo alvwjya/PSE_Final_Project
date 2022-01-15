@@ -64,9 +64,14 @@ clientMotion.on('message', function(topic, message) {
 // ---------- END OF MQTT ------------
 
 const setAC = async (req, res) => {
+    var status = req.body;
+    var string = JSON.stringify(status);
+    var objectValue = JSON.parse(string);
     try {
-        publishSetAC()
-        res.status(201).json(addedDevice);
+        publishSetAC.publish("alvianAirConPower", objectValue['alvianAirConPower']);
+        publishSetAC.publish("alvianAirConTemp", objectValue['alvianAirConTemp']);
+        publishSetAC.publish("alvianAirConFan", objectValue['alvianAirConFan']);
+        res.status(201).json({message: "AC state changed."});
     } catch (error) {
         res.status(400).json({message: error.message});
     }
@@ -74,9 +79,11 @@ const setAC = async (req, res) => {
 
 const setLamp = async (req, res) => {
     var status = req.body;
+    var string = JSON.stringify(status);
+    var objectValue = JSON.parse(string);
     try {
-        publishSetLamp.publish("alvianLampPower", status);
-        res.status(201).json(status);
+        publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
+        res.status(201).json({message: "Lamp state changed."});
     } catch (error) {
         res.status(400).json({message: error.message});
     }
@@ -111,5 +118,6 @@ router.get('/lamp', getLamp);
 
 //Set device
 router.post('/setlamp', setLamp);
+router.post('/setac', setAC);
 
 module.exports = router;
