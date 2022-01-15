@@ -87,7 +87,6 @@ const setLamp = async (req, res) => {
         publishSetLamp.on('connect', function() {
             publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
         });
-        publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
         res.status(201).json({message: "Lamp state changed."});
     } catch (error) {
         res.status(400).json({message: error.message});
