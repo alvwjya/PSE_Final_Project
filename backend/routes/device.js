@@ -68,9 +68,11 @@ const setAC = async (req, res) => {
     var string = JSON.stringify(status);
     var objectValue = JSON.parse(string);
     try {
-        publishSetAC.publish("alvianAirConPower", objectValue['alvianAirConPower']);
-        publishSetAC.publish("alvianAirConTemp", objectValue['alvianAirConTemp']);
-        publishSetAC.publish("alvianAirConFan", objectValue['alvianAirConFan']);
+        publishSetAC.on('connect', function() {
+            publishSetAC.publish("alvianAirConPower", objectValue['alvianAirConPower']);
+            publishSetAC.publish("alvianAirConTemp", objectValue['alvianAirConTemp']);
+            publishSetAC.publish("alvianAirConFan", objectValue['alvianAirConFan']);
+        });
         res.status(201).json({message: "AC state changed."});
     } catch (error) {
         res.status(400).json({message: error.message});
@@ -82,6 +84,9 @@ const setLamp = async (req, res) => {
     var string = JSON.stringify(status);
     var objectValue = JSON.parse(string);
     try {
+        publishSetLamp.on('connect', function() {
+            publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
+        });
         publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
         res.status(201).json({message: "Lamp state changed."});
     } catch (error) {
