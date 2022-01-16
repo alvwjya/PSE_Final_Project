@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Devices = mongoose.model('Devices');
-require('../models/devices');
 
 // --------- MQTT -----------
 const mqtt = require('mqtt');
