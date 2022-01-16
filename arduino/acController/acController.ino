@@ -129,7 +129,6 @@ void callback(char *topic, byte *payload, unsigned int length)
   {
     Serial.print("AC Temp: ");
     payload[length] = '\0';
-    Serial.print((char *)payload);
     String myString = String((char *)payload);
     int getVal = myString.toInt();
     Serial.print(getVal);
