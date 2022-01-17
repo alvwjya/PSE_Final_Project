@@ -60,17 +60,43 @@ clientMotion.on('message', function(topic, message) {
 });
 // ---------- END OF MQTT ------------
 
-const setAC = async (req, res) => {
+const setAcPower = async (req, res) => {
     var status = req.body;
     var string = JSON.stringify(status);
     var objectValue = JSON.parse(string);
     try {
         publishSetAC.on('connect', function() {
             publishSetAC.publish("alvianAirConPower", objectValue['alvianAirConPower']);
+        });
+        res.status(201).json({message: "AC power state changed."});
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+}
+
+const setAcTemp = async (req, res) => {
+    var status = req.body;
+    var string = JSON.stringify(status);
+    var objectValue = JSON.parse(string);
+    try {
+        publishSetAC.on('connect', function() {
             publishSetAC.publish("alvianAirConTemp", objectValue['alvianAirConTemp']);
+        });
+        res.status(201).json({message: "AC temp changed."});
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+}
+
+const setAcFan = async (req, res) => {
+    var status = req.body;
+    var string = JSON.stringify(status);
+    var objectValue = JSON.parse(string);
+    try {
+        publishSetAC.on('connect', function() {
             publishSetAC.publish("alvianAirConFan", objectValue['alvianAirConFan']);
         });
-        res.status(201).json({message: "AC state changed."});
+        res.status(201).json({message: "AC fan changed."});
     } catch (error) {
         res.status(400).json({message: error.message});
     }
@@ -119,6 +145,8 @@ router.get('/lamp', getLamp);
 
 //Set device
 router.post('/setlamp', setLamp);
-router.post('/setac', setAC);
+router.post('/setacpower', setAcPower);
+router.post('/setactemp', setAcTemp);
+router.post('/setacfan', setAcFan);
 
 module.exports = router;
