@@ -7,6 +7,8 @@ import './AddSensors.css';
 
 const AddSensors = () => {
 
+    const [sensorName, setSensorName] = useState();
+    const [sensorDescription, setSensorDescription] = useState();
     const [displayType, setType] = useState();
 
     const typeSensors = () => {
@@ -116,7 +118,7 @@ const AddSensors = () => {
                                             Name
                                         </label>
                                         <div className="col-sm-10">
-                                            <input type="text" id="inputTitle" className="form-control" placeholder="ex: AC 1" />
+                                            <input type="text" id="inputTitle" className="form-control" placeholder="ex: AC 1" value={sensorName} onChange={(e) => setSensorName(e.target.value)} />
                                         </div>
                                     </div>
 
@@ -142,7 +144,7 @@ const AddSensors = () => {
                                             Description
                                         </label>
                                         <div className='col-sm-10'>
-                                            <input type="text" id="inputDesc" className="form-control" placeholder="Add Description" />
+                                            <input type="text" id="inputDesc" className="form-control" placeholder="Add Description" value={sensorDescription} onChange={(e) => setSensorDescription(e.target.value)} />
                                         </div>
                                     </div>
 
