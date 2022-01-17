@@ -43,7 +43,7 @@ const SensorsGalery = () => {
             return "Dark"
         }
         else {
-            return "Light"
+            return "Bright"
         }
     }
 
@@ -62,16 +62,12 @@ const SensorsGalery = () => {
     return (
         <>
             <Navbar />
-
             <div className="container-fluid">
                 <div className="title-header">
                     <h2 className="text-start header ml-3 p-2">Sensors:</h2>
                 </div>
 
-
                 <div className="row">
-
-
                     <div className='col-md-6'>
                         <div className="card ml-3 p-2">
                             <div className="card-body">
@@ -99,10 +95,6 @@ const SensorsGalery = () => {
                             </div>
                         </div>
                     </div>
-
-
-
-
 
                     <div className='col-md-6'>
                         <div className="card ml-3 p-2">
