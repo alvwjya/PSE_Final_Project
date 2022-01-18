@@ -162,8 +162,8 @@ const SensorsGalery = () => {
                     <h2 className="text-start header ml-3 p-2">Sensors:</h2>
                 </div>
 
-                <div className="row">
-                    <div className='col-md-6'>
+                <div className="row d-flex justify-content-center">
+                    <div className='col-md-4 cardAC'>
                         <div className="card ml-3 p-2">
                             <div className="card-body">
                                 <h5 className="card-title">AC</h5>
@@ -194,11 +194,11 @@ const SensorsGalery = () => {
                         </div>
                     </div>
 
-                    <div className='col-md-6'>
+                    <div className='col-md-4 cardLamp'>
                         <div className="card ml-3 p-2">
                             <div className="card-body">
-                                <h5 className="card-title">Sensors Name</h5>
-                                <p className="card-text mx-0 px-0">Sensors Description</p>
+                                <h5 className="card-title">Lamp</h5>
+                                <p className="card-text mx-0 px-0">This is Lamp</p>
                                 <p className="text p-0">Room Brightness: {setBrightValue()} </p>
                                 <p className="text p-0">Room Motion: {setMotionValue()}</p>
                                 <p className="card-text mx-0 px-0">Type: Lamp</p>

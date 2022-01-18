@@ -2,12 +2,12 @@ import './App.css';
 import Navbar from './components/Navbar';
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ItemsGalery from './components/ItemsGalery';
+import ItemsGalery from './components/UnusedUI/ItemsGalery';
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import AddRoom from './components/AddRoom';
+import AddRoom from './components/UnusedUI/AddRoom';
 import SensorsGalery from './components/SensorsGalery';
-import AddSensors from './components/AddSensors';
-import Notifications from './components/Notifications';
+import AddSensors from './components/UnusedUI/AddSensors';
+import Notifications from './components/UnusedUI/Notifications';
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +18,7 @@ function App() {
       </Route>
       <Route path="/addSensors" exact component={AddSensors}>
       </Route>
-      <Route path="/sensors" exact component={SensorsGalery}>
+      <Route path="/rooms" exact component={ItemsGalery}>
       </Route>
     </BrowserRouter>
    
