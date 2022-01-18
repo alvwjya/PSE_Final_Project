@@ -88,6 +88,7 @@ router.post("/setactemp", (req, res) => {
     }
 
     publishSetAC.publish("alvianAirConPower", alvianAirConTemp);
+    console.log(alvianAirConTemp)
     return res.status(200).json({ message: alvianAirConTemp });
 })
 
@@ -104,6 +105,7 @@ router.post("/setacfan", (req, res) => {
     }
 
     publishSetAC.publish("alvianAirConFan", alvianAirConFan);
+    console.log(alvianAirConFan)
     return res.status(200).json({ message: alvianAirConFan });
 })
 

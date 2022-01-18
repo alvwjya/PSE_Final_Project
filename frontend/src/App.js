@@ -11,8 +11,7 @@ import Notifications from './components/Notifications';
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={ItemsGalery}>
-      </Route>
+      <Route path="/" exact component={SensorsGalery}/>
       <Route path="/Notifications" exact component={Notifications}>
       </Route>
       <Route path="/addRoom" exact component={AddRoom}>
