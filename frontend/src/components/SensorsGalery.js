@@ -157,14 +157,13 @@ const SensorsGalery = () => {
     return (
         <>
             <Navbar />
-            <div className="container-fluid">
+            <div className="container-fluid bg-dark text-light">
                 <div className="title-header">
-                    <h2 className="text-start header ml-3 p-2">Sensors:</h2>
+                    <h2 className="text-center header ml-3 p-2">Sensors:</h2>
                 </div>
-
-                <div className="row d-flex justify-content-center">
+                <div className="row d-flex justify-content-center p-4">
                     <div className='col-md-4 cardAC'>
-                        <div className="card ml-3 p-2">
+                        <div className="card ml-3 p-2 bg-dark">
                             <div className="card-body">
                                 <h5 className="card-title">AC</h5>
                                 <p className="card-text mx-0 px-0">This is AC</p>
@@ -195,7 +194,7 @@ const SensorsGalery = () => {
                     </div>
 
                     <div className='col-md-4 cardLamp'>
-                        <div className="card ml-3 p-2">
+                        <div className="card ml-3 p-2 bg-dark">
                             <div className="card-body">
                                 <h5 className="card-title">Lamp</h5>
                                 <p className="card-text mx-0 px-0">This is Lamp</p>

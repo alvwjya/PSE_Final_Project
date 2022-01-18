@@ -1,6 +1,18 @@
 .turn-button{
     margin-left: 3px;
     margin-right: 3px;
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #ffffff;
+}
+
+.turn-button:hover{
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #dbe9fd;
+    font-weight: bold;
+    background-color: transparent;
+    border-color: #ffffff;
 }
 
 .text-temp {
@@ -9,8 +21,26 @@
 
 
 .button-temp{
+    color: #ffffff;
     padding: 3px;
     margin-left: 0.2cm;
     margin-right: 0.2cm;
+}
+
+.button-temp:hover{
+    color: #dbe9fd;
+    padding: 3px;
+    margin-left: 0.2cm;
+    margin-right: 0.2cm;
+}
+
+.card {
+    border-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    border-width: 2px;
+}
+
+.row {
+    height: 500px;
 }
 
