@@ -20,6 +20,7 @@ const SensorsGalery = () => {
     const [RoomHumidity, setRoomHumidity] = useState("")
     const [RoomBrightness, setRoomBrightness] = useState("")
     const [RoomMotion, setRoomMotion] = useState("")
+    const [LampPower, setLampPower] = useState("")
 
 
     apiAC.get('/').then(
@@ -54,6 +55,25 @@ const SensorsGalery = () => {
         else {
             return "There is a movement"
         }
+    }
+
+    const setLampOn = () => {
+        return setLampPower("1");
+    }
+
+    const setLampOff = () => {
+        return setLampPower("0");
+    }
+
+    const settingsLamp = () => {
+        const datasLamp = {
+            "alvianLampPower" : LampPower
+        };
+
+        axios.post("http://localhost:4000/setlamp", datasLamp)
+        .then((response) => {
+            console.log(response.status);
+        })
     }
 
 
@@ -92,6 +112,9 @@ const SensorsGalery = () => {
                                     <a href="#" className="btn bi bi-dash-circle button-temp"></a>
                                     <a href="#" className="btn bi bi-plus-circle button-temp"></a>
                                 </div>
+                                <div class="text-center mx-auto">
+                                    <button className='btn btn-primary turn-button'>Set</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,8 +128,11 @@ const SensorsGalery = () => {
                                 <p className="text p-0">Room Motion: {setMotionValue()}</p>
                                 <p className="card-text mx-0 px-0">Type: Lamp</p>
                                 <div className="container-button">
-                                    <a href="#" className="btn btn-primary turn-button">Turn on</a>
-                                    <a href="#" className="btn btn-primary turn-button">Turn off</a>
+                                    <button className="btn btn-primary turn-button" onClick={setLampOn.bind(this)}>Turn on</button>
+                                    <button className="btn btn-primary turn-button" onClick={setLampOff.bind(this)}>Turn off</button>
+                                </div>
+                                <div class="text-center mx-auto">
+                                    <button className='btn btn-primary turn-button' onClick={settingsLamp.bind(this)}>Set</button>
                                 </div>
                             </div>
                         </div>
