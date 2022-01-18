@@ -21,6 +21,7 @@ const SensorsGalery = () => {
     const [RoomBrightness, setRoomBrightness] = useState("")
     const [RoomMotion, setRoomMotion] = useState("")
     const [LampPower, setLampPower] = useState("")
+    const [ACPower, setACPower] = useState("")
 
 
     apiAC.get('/').then(
@@ -70,7 +71,26 @@ const SensorsGalery = () => {
             "alvianLampPower" : LampPower
         };
 
-        axios.post("http://localhost:4000/setlamp", datasLamp)
+        axios.post("http://localhost:4000/setlamppower", datasLamp)
+        .then((response) => {
+            console.log(response.status);
+        })
+    }
+
+    const setACOn = () => {
+        return setACPower("1");
+    }
+
+    const setACOff = () => {
+        return setACPower("0");
+    }
+
+    const settingsAC = () => {
+        const datasAC = {
+            "alvianAirConPower" : ACPower
+        };
+
+        axios.post("http://localhost:4000/setACpower", datasAC)
         .then((response) => {
             console.log(response.status);
         })
@@ -97,8 +117,8 @@ const SensorsGalery = () => {
                                 <p className="text p-0">Room Humidity: {RoomHumidity}</p>
                                 <p className="card-text mx-0 px-0">Type: AC</p>
                                 <div className="container-button">
-                                    <a href="#" className="btn btn-primary turn-button">Turn on</a>
-                                    <a href="#" className="btn btn-primary turn-button">Turn off</a>
+                                    <a href="#" className="btn btn-primary turn-button" onClick={setACOn.bind(this)}>Turn on</a>
+                                    <a href="#" className="btn btn-primary turn-button" onClick={setACOff.bind(this)}>Turn off</a>
                                 </div>
 
                                 <div className="container-button mt-3">
@@ -113,7 +133,7 @@ const SensorsGalery = () => {
                                     <a href="#" className="btn bi bi-plus-circle button-temp"></a>
                                 </div>
                                 <div class="text-center mx-auto">
-                                    <button className='btn btn-primary turn-button'>Set</button>
+                                    <button className='btn btn-primary turn-button' onClick={settingsAC.bind(this)}>Set</button>
                                 </div>
                             </div>
                         </div>
