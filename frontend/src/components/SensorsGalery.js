@@ -23,6 +23,7 @@ const SensorsGalery = () => {
     const [LampPower, setLampPower] = useState("")
     const [ACPower, setACPower] = useState("")
     const [ACFan, setACFan] = useState(1)
+    const [ACTemperature, setACTemperature] = useState(25)
 
 
     apiAC.get('/').then(
@@ -95,20 +96,37 @@ const SensorsGalery = () => {
         return setACFan(ACFan-1)
     }
 
+    const setACTempUp = () => {
+        return setACTemperature(ACTemperature+1)
+    }
+
+    const setACTempDown = () => {
+        return setACTemperature(ACTemperature-1)
+    }
+
 
 
     const settingsAC = () => {
-        const datasAC = {
-            "alvianAirConPower" : ACPower,
-            "alvianAirConFan" : ACFan
+        const datasACPower = {
+            "alvianAirConPower" : ACPower
         };
+        const datasACFan = {
+        "alvianAirConFan" : ACFan};
 
-        axios.post("http://localhost:4000/setACpower", datasAC.alvianAirConPower)
+        const datasACTemp = {
+        "alvianAirConTemp": ACTemperature};
+
+        axios.post("http://localhost:4000/setACpower", datasACPower)
         .then((response) => {
             console.log(response.status);
         })
 
-        axios.post("http://localhost:4000/setacfan", datasAC.alvianAirConFan)
+        axios.post("http://localhost:4000/setacfan", datasACFan)
+        .then((response) => {
+            console.log(response.status);
+        })
+
+        axios.post("http://localhost:4000/setactemp", datasACTemp)
         .then((response) => {
             console.log(response.status);
         })
@@ -141,8 +159,8 @@ const SensorsGalery = () => {
                                
                                 <div className="container-button mt-3">
                                     <span className="text-temp">Temperature: </span>
-                                    <button className="btn bi bi-dash-circle button-temp"></button>
-                                    <button className="btn bi bi-plus-circle button-temp"></button>
+                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACTempDown.bind(this)}></button>
+                                    <button className="btn bi bi-plus-circle button-temp" onClick={setACTempUp.bind(this)}></button>
                                 </div>
 
                                 <div className="container-button mt-3">
