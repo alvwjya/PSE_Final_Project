@@ -17,7 +17,7 @@ IRDaikinESP ac(irLed); // Set the GPIO to be used to sending the message
 //Updates with values suitable for your network
 const char *ssid = "Alice_Chonky";
 const char *password = "s!b3rianHusky";
-const char *mqtt_server = "broker.mqtt-dashboard.com";
+const char *mqtt_server = "18.220.209.95";
 
 char *roomTemp = "alvianRoomTemperature";
 char *roomHumid = "alvianRoomHumidity";
@@ -40,7 +40,7 @@ PubSubClient client(mqtt_server, 1883, callback, wifiClient);
 void setup()
 {
   ac.begin();
-  
+
   //Initialize the light as an output and set to LOW (off)
   pinMode(BUILTIN_LED, OUTPUT);
   digitalWrite(BUILTIN_LED, HIGH);
@@ -221,7 +221,8 @@ void reconnect()
   }
 }
 
-void turnOn() {
+void turnOn()
+{
   ac.on();
   ac.setFan(1);
   ac.setMode(kDaikinCool);
@@ -231,19 +232,19 @@ void turnOn() {
 #if SEND_DAIKIN
   ac.send();
 #endif
-
 }
 
-void turnOff() {
+void turnOff()
+{
   ac.off();
 
 #if SEND_DAIKIN
   ac.send();
 #endif
-
 }
 
-void changeTemp(int temp) {
+void changeTemp(int temp)
+{
   ac.on();
   ac.setMode(kDaikinCool);
   ac.setTemp(temp);
@@ -254,7 +255,8 @@ void changeTemp(int temp) {
 #endif
 }
 
-void changeFan(int fan) {
+void changeFan(int fan)
+{
   ac.on();
   ac.setFan(fan);
   ac.setMode(kDaikinCool);
