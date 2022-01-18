@@ -22,6 +22,7 @@ const SensorsGalery = () => {
     const [RoomMotion, setRoomMotion] = useState("")
     const [LampPower, setLampPower] = useState("")
     const [ACPower, setACPower] = useState("")
+    const [ACFan, setACFan] = useState(1)
 
 
     apiAC.get('/').then(
@@ -85,12 +86,29 @@ const SensorsGalery = () => {
         return setACPower("0");
     }
 
+    const setACFanUp = () => {
+        return setACFan(ACFan + 1)
+
+    }
+
+    const setACFanDown = () => {
+        return setACFan(ACFan-1)
+    }
+
+
+
     const settingsAC = () => {
         const datasAC = {
-            "alvianAirConPower" : ACPower
+            "alvianAirConPower" : ACPower,
+            "alvianAirConFan" : ACFan
         };
 
-        axios.post("http://localhost:4000/setACpower", datasAC)
+        axios.post("http://localhost:4000/setACpower", datasAC.alvianAirConPower)
+        .then((response) => {
+            console.log(response.status);
+        })
+
+        axios.post("http://localhost:4000/setacfan", datasAC.alvianAirConFan)
         .then((response) => {
             console.log(response.status);
         })
@@ -120,7 +138,7 @@ const SensorsGalery = () => {
                                     <button className="btn btn-primary turn-button" onClick={setACOn.bind(this)}>Turn on</button>
                                     <button className="btn btn-primary turn-button" onClick={setACOff.bind(this)}>Turn off</button>
                                 </div>
-
+                               
                                 <div className="container-button mt-3">
                                     <span className="text-temp">Temperature: </span>
                                     <button className="btn bi bi-dash-circle button-temp"></button>
@@ -129,9 +147,10 @@ const SensorsGalery = () => {
 
                                 <div className="container-button mt-3">
                                     <span className="text-fan">Fan: </span>
-                                    <button className="btn bi bi-dash-circle button-temp"></button>
-                                    <button className="btn bi bi-plus-circle button-temp"></button>
+                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACFanDown.bind(this)}></button>
+                                    <button className="btn bi bi-plus-circle button-temp" onClick={setACFanUp.bind(this)}></button>
                                 </div>
+                                <p>{ACFan}</p>
                                 <div class="text-center mx-auto">
                                     <button className='btn btn-primary turn-button' onClick={settingsAC.bind(this)}>Set</button>
                                 </div>
