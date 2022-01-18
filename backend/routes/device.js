@@ -17,136 +17,135 @@ var clientMotion = mqtt.connect(address);
 var publishSetAC = mqtt.connect(address);
 var publishSetLamp = mqtt.connect(address);
 
-clientTemp.on('connect', function() {
+clientTemp.on('connect', function () {
     clientTemp.subscribe('alvianRoomTemperature');
     console.log('Subscribe room temp successful');
 });
 
-clientHumidity.on('connect', function() {
+clientHumidity.on('connect', function () {
     clientHumidity.subscribe('alvianRoomHumidity');
     console.log('Subscribe room humidity successful');
 });
 
-clientBright.on('connect', function() {
+clientBright.on('connect', function () {
     clientBright.subscribe('alvianRoomBrightness');
     console.log('Subscribe room brightness successful');
 });
 
-clientMotion.on('connect', function() {
+clientMotion.on('connect', function () {
     clientMotion.subscribe('alvianRoomMotion');
     console.log('Subscribe room motion successful');
 });
 
 //---Message---
 
-clientTemp.on('message', function(topic, message) {
+clientTemp.on('message', function (topic, message) {
     msgTemp = message.toString();
-    console.log(msgTemp);
 });
 
-clientHumidity.on('message', function(topic, message) {
-    console.log(message.toString());
+clientHumidity.on('message', function (topic, message) {
+    //console.log(message.toString());
     msgHumid = message.toString();
 });
 
-clientBright.on('message', function(topic, message) {
-    console.log(message.toString());
+clientBright.on('message', function (topic, message) {
+    //console.log(message.toString());
     msgBright = message.toString();
 });
 
-clientMotion.on('message', function(topic, message) {
-    console.log(message.toString());
+clientMotion.on('message', function (topic, message) {
+    //console.log(message.toString());
     msgMotion = message.toString();
 });
+
 // ---------- END OF MQTT ------------
 
-const setAcPower = async (req, res) => {
-    var status = req.body;
-    var string = JSON.stringify(status);
-    var objectValue = JSON.parse(string);
-    try {
-        publishSetAC.on('connect', function() {
-            publishSetAC.publish("alvianAirConPower", objectValue['alvianAirConPower']);
-        });
-        res.status(201).json({message: "AC power state changed."});
-    } catch (error) {
-        res.status(400).json({message: error.message});
-    }
-}
 
-const setAcTemp = async (req, res) => {
-    var status = req.body;
-    var string = JSON.stringify(status);
-    var objectValue = JSON.parse(string);
-    try {
-        publishSetAC.on('connect', function() {
-            publishSetAC.publish("alvianAirConTemp", objectValue['alvianAirConTemp']);
-        });
-        res.status(201).json({message: "AC temp changed."});
-    } catch (error) {
-        res.status(400).json({message: error.message});
+router.post("/setacpower", (req, res) => {
+    const { alvianAirConPower } = req.body;
+    if (!alvianAirConPower) {
+        return res.status(422).json({ error: "Please fill all the fields" });
     }
-}
 
-const setAcFan = async (req, res) => {
-    var status = req.body;
-    var string = JSON.stringify(status);
-    var objectValue = JSON.parse(string);
-    try {
-        publishSetAC.on('connect', function() {
-            publishSetAC.publish("alvianAirConFan", objectValue['alvianAirConFan']);
-        });
-        res.status(201).json({message: "AC fan changed."});
-    } catch (error) {
-        res.status(400).json({message: error.message});
+    if (!(alvianAirConPower == 0 || alvianAirConPower == 1)) {
+        return res.status(422).json({ error: "Invalid value" });
     }
-}
 
-const setLamp = async (req, res) => {
-    var status = req.body;
-    var string = JSON.stringify(status);
-    var objectValue = JSON.parse(string);
-    try {
-        publishSetLamp.on('connect', function() {
-            publishSetLamp.publish("alvianLampPower", objectValue['alvianLampPower']);
-        });
-        res.status(201).json({message: "Lamp state changed."});
-    } catch (error) {
-        res.status(400).json({message: error.message});
+    publishSetAC.publish("alvianAirConPower", alvianAirConPower);
+    return res.status(200).json({ message: alvianAirConPower });
+})
+
+
+router.post("/setactemp", (req, res) => {
+    const { alvianAirConTemp } = req.body;
+
+    if (!alvianAirConTemp) {
+        return res.status(422).json({ error: "Please fill all the fields" });
     }
-}
 
-const getAC = async (req, res) => {
-    
+    if (!(alvianAirConTemp >= 18 && alvianAirConTemp <= 32)) {
+        return res.status(422).json({ error: "Invalid value" });
+    }
+
+    publishSetAC.publish("alvianAirConPower", alvianAirConTemp);
+    return res.status(200).json({ message: alvianAirConTemp });
+})
+
+
+router.post("/setacfan", (req, res) => {
+    const { alvianAirConFan } = req.body;
+
+    if (!alvianAirConFan) {
+        return res.status(422).json({ error: "Please fill all the fields" });
+    }
+
+    if (!(alvianAirConFan >= 1 && alvianAirConFan <= 4)) {
+        return res.status(422).json({ error: "Invalid value" });
+    }
+
+    publishSetAC.publish("alvianAirConFan", alvianAirConFan);
+    return res.status(200).json({ message: alvianAirConFan });
+})
+
+
+router.post("/setlamppower", (req, res) => {
+    const { alvianLampPower } = req.body;
+
+    if (!alvianLampPower) {
+        return res.status(422).json({ error: "Please fill all the fields" });
+    }
+
+    if (!(alvianLampPower == 0 || alvianLampPower == 1)) {
+        return res.status(422).json({ error: "Invalid value" });
+    }
+
+    publishSetLamp.publish("alvianLampPower", alvianLampPower);
+    return res.status(200).json({ message: alvianLampPower });
+})
+
+
+router.get("/ac", (req, res) => {
     try {
         res.status(200).json({
             'Room Temp': msgTemp,
             'Room Humidity': msgHumid
         });
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
-}
+});
 
-const getLamp = async (req, res) => {
+
+router.get("/lamp", (req, res) => {
     try {
         res.status(200).json({
             'Room Brightness': msgBright,
             'Room Motion': msgMotion
         });
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
-}
+});
 
-//Get all devices
-router.get('/ac', getAC);
-router.get('/lamp', getLamp);
-
-//Set device
-router.post('/setlamp', setLamp);
-router.post('/setacpower', setAcPower);
-router.post('/setactemp', setAcTemp);
-router.post('/setacfan', setAcFan);
 
 module.exports = router;
