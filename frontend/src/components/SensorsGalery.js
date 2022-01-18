@@ -117,20 +117,20 @@ const SensorsGalery = () => {
                                 <p className="text p-0">Room Humidity: {RoomHumidity}</p>
                                 <p className="card-text mx-0 px-0">Type: AC</p>
                                 <div className="container-button">
-                                    <a href="#" className="btn btn-primary turn-button" onClick={setACOn.bind(this)}>Turn on</a>
-                                    <a href="#" className="btn btn-primary turn-button" onClick={setACOff.bind(this)}>Turn off</a>
+                                    <button className="btn btn-primary turn-button" onClick={setACOn.bind(this)}>Turn on</button>
+                                    <button className="btn btn-primary turn-button" onClick={setACOff.bind(this)}>Turn off</button>
                                 </div>
 
                                 <div className="container-button mt-3">
                                     <span className="text-temp">Temperature: </span>
-                                    <a href="#" className="btn bi bi-dash-circle button-temp"></a>
-                                    <a href="#" className="btn bi bi-plus-circle button-temp"></a>
+                                    <button className="btn bi bi-dash-circle button-temp"></button>
+                                    <button className="btn bi bi-plus-circle button-temp"></button>
                                 </div>
 
                                 <div className="container-button mt-3">
                                     <span className="text-fan">Fan: </span>
-                                    <a href="#" className="btn bi bi-dash-circle button-temp"></a>
-                                    <a href="#" className="btn bi bi-plus-circle button-temp"></a>
+                                    <button className="btn bi bi-dash-circle button-temp"></button>
+                                    <button className="btn bi bi-plus-circle button-temp"></button>
                                 </div>
                                 <div class="text-center mx-auto">
                                     <button className='btn btn-primary turn-button' onClick={settingsAC.bind(this)}>Set</button>
