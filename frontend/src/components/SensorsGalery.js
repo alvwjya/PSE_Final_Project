@@ -10,7 +10,7 @@ const apiAC = axios.create({
 })
 
 const apiLamp = axios.create({
-    baseURL: 'http://3.140.211.108/Lamp'
+    baseURL: 'http://3.140.211.108/lamp'
 })
 
 

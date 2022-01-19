@@ -87,7 +87,7 @@ router.post("/setactemp", (req, res) => {
         return res.status(422).json({ error: "Invalid value" });
     }
 
-    publishSetAC.publish("alvianAirConPower", alvianAirConTemp);
+    publishSetAC.publish("alvianAirConTemp", alvianAirConTemp);
     console.log(alvianAirConTemp)
     return res.status(200).json({ message: alvianAirConTemp });
 })
