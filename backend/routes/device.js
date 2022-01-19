@@ -3,7 +3,7 @@ const router = express.Router();
 
 // --------- MQTT -----------
 const mqtt = require('mqtt');
-const address = "mqtt://broker.mqtt-dashboard.com";
+const address = "mqtt://18.220.209.95";
 var msgTemp = '';
 var msgHumid = '';
 var msgBright = '';

@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 const apiAC = axios.create({
-    baseURL: 'http://localhost:4000/ac'
+    baseURL: 'http://3.140.211.108/ac'
 })
 
 const apiLamp = axios.create({
-    baseURL: 'http://localhost:4000/Lamp'
+    baseURL: 'http://3.140.211.108/Lamp'
 })
 
 
@@ -64,7 +64,7 @@ const SensorsGalery = () => {
             "alvianLampPower": "0"
         };
 
-        axios.post("http://localhost:4000/setlamppower", datasLamp)
+        axios.post("http://3.140.211.108/setlamppower", datasLamp)
             .then((response) => {
                 console.log(response.status);
             })
@@ -75,7 +75,7 @@ const SensorsGalery = () => {
             "alvianLampPower": "1"
         };
 
-        axios.post("http://localhost:4000/setlamppower", datasLamp)
+        axios.post("http://3.140.211.108/setlamppower", datasLamp)
             .then((response) => {
                 console.log(response.status);
             })
@@ -85,19 +85,31 @@ const SensorsGalery = () => {
     //CODE RELATED WITH AC
 
     const setACTempUp = () => {
+        if (ACTemperature >= 32) {
+            return;
+        }
         return setACTemperature(ACTemperature + 1)
     }
 
     const setACTempDown = () => {
+        if (ACTemperature <= 18) {
+            return;
+        }
         return setACTemperature(ACTemperature - 1)
     }
 
     const setACFanUp = () => {
+        if (ACFan >= 4) {
+            return;
+        }
         return setACFan(ACFan + 1)
 
     }
 
     const setACFanDown = () => {
+        if (ACFan <= 1) {
+            return;
+        }
         return setACFan(ACFan - 1)
     }
 
@@ -106,7 +118,7 @@ const SensorsGalery = () => {
             "alvianAirConPower": "1"
         };
 
-        axios.post("http://localhost:4000/setacpower", datasAC)
+        axios.post("http://3.140.211.108/setacpower", datasAC)
             .then((response) => {
                 console.log(response.status);
             })
@@ -117,7 +129,7 @@ const SensorsGalery = () => {
             "alvianAirConPower": "0"
         };
 
-        axios.post("http://localhost:4000/setacpower", datasAC)
+        axios.post("http://3.140.211.108/setacpower", datasAC)
             .then((response) => {
                 console.log(response.status);
             })
@@ -128,7 +140,7 @@ const SensorsGalery = () => {
             "alvianAirConTemp": String(ACTemperature)
         };
 
-        axios.post("http://localhost:4000/setactemp", datasACTemp)
+        axios.post("http://3.140.211.108/setactemp", datasACTemp)
             .then((response) => {
                 console.log(response.status);
                 console.log(ACTemperature);
@@ -142,7 +154,7 @@ const SensorsGalery = () => {
             "alvianAirConFan": String(ACFan)
         };
 
-        axios.post("http://localhost:4000/setacfan", datasACFan)
+        axios.post("http://3.140.211.108/setacfan", datasACFan)
             .then((response) => {
                 console.log(response.status);
                 console.log(ACFan);
@@ -177,7 +189,7 @@ const SensorsGalery = () => {
 
                                 <div className="container-button mt-3">
                                     <span className="text-temp">Temperature: </span>
-                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACTempDown.bind(this)}></button>
+                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACTempDown.bind(this)}>{ACTemperature}</button>
                                     <button className="btn bi bi-plus-circle button-temp" onClick={setACTempUp.bind(this)}></button>
                                     <button className="btn btn-primary turn-button" onClick={settingsACTemp.bind(this)}>Set </button>
 
@@ -185,7 +197,7 @@ const SensorsGalery = () => {
 
                                 <div className="container-button mt-3">
                                     <span className="text-fan">Fan: </span>
-                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACFanDown.bind(this)}></button>
+                                    <button className="btn bi bi-dash-circle button-temp" onClick={setACFanDown.bind(this)}>{ACFan}</button>
                                     <button className="btn bi bi-plus-circle button-temp" onClick={setACFanUp.bind(this)}></button>
                                     <button className="btn btn-primary turn-button" onClick={settingsACFan.bind(this)}>Set</button>
                                 </div>

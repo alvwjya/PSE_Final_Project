@@ -12,9 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
+app.get('/', function (req, res) {
+    res.send("Pervasive Backend")
+})
 app.use(require('./routes/device'));
 
 //Port
-app.listen(port, ()=> {
+app.listen(port, () => {
     console.log('Server is running on port: ', port);
 });
