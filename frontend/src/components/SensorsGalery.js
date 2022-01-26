@@ -42,12 +42,13 @@ const SensorsGalery = () => {
     )
 
     const setBrightValue = () => {
-        if (RoomBrightness == 0) {
+        if (RoomBrightness == 1) {
             return "Dark"
         }
         else {
             return "Bright"
         }
+        
     }
 
     const setMotionValue = () => {
