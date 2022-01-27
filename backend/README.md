@@ -27,7 +27,7 @@ As the backend runs, 4 MQTT clients will connect and subscribe to the device top
     "alvianAirConTemp" = "x"
   }
   ```
-  Where `x` raging from `18` to `32`
+  Where `x` ranging from `18` to `32`
 
 
 - The endpoint `/setacfan` can be used to set AC fan with the input:
@@ -37,7 +37,7 @@ As the backend runs, 4 MQTT clients will connect and subscribe to the device top
   }
   ```
 
-  Where `x` rangine from `1` to `4`
+  Where `x` ranging from `1` to `4`
 
 
 - The endpoint `/setlamppower` can be used to set lamp power with the input:
