@@ -19,7 +19,7 @@ For the frontend, we are using ReactJS as the library with the help of bootstrap
 ### Arduino
 For this project, you will need to use two NodeMCUs. One for controlling the AC, and the other for the light. You need to adjust several attributes as stated below.
 
-- Smart Light Controler
+- Smart Air Conditioner Controler
   
   ```
   const char *ssid = <Your WiFi name>;
@@ -33,7 +33,7 @@ For this project, you will need to use two NodeMCUs. One for controlling the AC,
   char *acFan = <Topic for AC fan>;
   ```
 
-- Smart AIr Conditioner Controler
+- Smart Light Controler
   ```
   const char *ssid = <Your WiFi name>;
   const char *password = <Your WiFi password>;
